@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.br.ajenterprise.api.dto.CursoDto;
-import com.br.ajenterprise.api.modelo.Curso;
-import com.br.ajenterprise.api.servico.CursoServico;
+import br.com.sansyro.sgp.api.dto.CursoDto;
+import br.com.sansyro.sgp.api.modelo.Curso;
+import br.com.sansyro.sgp.api.servico.CursoServico;
 
 @RestController
 @RequestMapping("/cursos")

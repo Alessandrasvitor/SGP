@@ -1,14 +1,14 @@
 package br.com.sansyro.sgp.api.modelo;
 
-import com.br.ajenterprise.api.constante.PerfilEnum;
-import com.br.ajenterprise.api.constante.StatusEnum;
+import br.com.sansyro.sgp.api.constante.PerfilEnum;
+import br.com.sansyro.sgp.api.constante.StatusEnum;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
 @Generated(value = "org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor")
 @StaticMetamodel(Usuario.class)
-public abstract class Usuario_ extends com.br.ajenterprise.api.modelo.Entidade_ {
+public abstract class Usuario_ extends br.com.sansyro.sgp.api.modelo.Entidade_ {
 
 	public static volatile SingularAttribute<Usuario, String> senha;
 	public static volatile SingularAttribute<Usuario, String> nome;

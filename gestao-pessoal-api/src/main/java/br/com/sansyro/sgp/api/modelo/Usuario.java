@@ -8,9 +8,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.br.ajenterprise.api.constante.PerfilEnum;
-import com.br.ajenterprise.api.constante.StatusEnum;
-
+import br.com.sansyro.sgp.api.constante.PerfilEnum;
+import br.com.sansyro.sgp.api.constante.StatusEnum;
 import lombok.Getter;
 import lombok.Setter;
 

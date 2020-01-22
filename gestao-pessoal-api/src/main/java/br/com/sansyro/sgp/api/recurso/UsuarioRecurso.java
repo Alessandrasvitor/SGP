@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.br.ajenterprise.api.modelo.Usuario;
-import com.br.ajenterprise.api.repositorio.UsuarioRepositorio;
+import br.com.sansyro.sgp.api.modelo.Usuario;
+import br.com.sansyro.sgp.api.repositorio.UsuarioRepositorio;
 
 @RestController
 @RequestMapping("/usuarios")

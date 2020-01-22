@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.br.ajenterprise.api.util.DataUlil;
+import br.com.sansyro.sgp.api.util.DataUlil;
 
 @RestController
 @RequestMapping("/testeMetodos")
