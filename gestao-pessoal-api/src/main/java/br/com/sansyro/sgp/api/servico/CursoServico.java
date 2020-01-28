@@ -1,5 +1,6 @@
 package br.com.sansyro.sgp.api.servico;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
@@ -20,7 +21,7 @@ public class CursoServico {
 	private CursoRepositorio cursoRepositorio;
 	
 	public Page<Curso> buscarCursos(CursoDto pCurso, Pageable pageable){
-		return cursoRepositorio.buscarCursos( pCurso, pageable);
+		return cursoRepositorio.findAll(pageable);
 	}
 	
 	public Curso salvar(Curso pCurso) {
@@ -55,6 +56,10 @@ public class CursoServico {
 		Curso lCurso = buscarPorId(codigo);
 		lCurso.setNota(nota);
 		return lCurso;
+	}
+
+	public List<Curso> listarCursos() {
+		return cursoRepositorio.findAll();
 	}
 	
 	

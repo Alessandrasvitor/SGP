@@ -26,20 +26,20 @@ public class CursoRepositoryImpl implements CursoRepositoryQuery{
 	@PersistenceContext
 	EntityManager manager;
 	
-	@Override
-	public Page<Curso> buscarCursos(CursoDto pCurso, Pageable pageable) {
-		CriteriaBuilder builder = manager.getCriteriaBuilder();
-		CriteriaQuery<Curso> criteria = builder.createQuery(Curso.class);
-		Root<Curso> root = criteria.from(Curso.class);
-		
-		Predicate[] predicates = criarFiltrosPesquisa(pCurso, builder, root);
-		
-		criteria.where( builder.and((javax.persistence.criteria.Predicate[]) predicates));
-		
-		TypedQuery<Curso> query = manager.createQuery(criteria);
-		adicionarRestricoesPaginacao(query, pageable);
-		return new PageImpl<>(query.getResultList(), pageable, total(pCurso));
-	}
+//	@Override
+//	public Page<Curso> buscarCursos(CursoDto pCurso, Pageable pageable) {
+//		CriteriaBuilder builder = manager.getCriteriaBuilder();
+//		CriteriaQuery<Curso> criteria = builder.createQuery(Curso.class);
+//		Root<Curso> root = criteria.from(Curso.class);
+//		
+//		Predicate[] predicates = criarFiltrosPesquisa(pCurso, builder, root);
+//		
+//		criteria.where( builder.and((javax.persistence.criteria.Predicate[]) predicates));
+//		
+//		TypedQuery<Curso> query = manager.createQuery(criteria);
+//		adicionarRestricoesPaginacao(query, pageable);
+//		return new PageImpl<>(query.getResultList(), pageable, total(pCurso));
+//	}
 
 	private Predicate[] criarFiltrosPesquisa(CursoDto pCurso, CriteriaBuilder builder, Root<Curso> root) {
 		List<Predicate> predicates = new ArrayList();

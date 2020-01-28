@@ -8,6 +8,6 @@ import br.com.sansyro.sgp.api.modelo.Curso;
 
 public interface CursoRepositoryQuery {
 
-	public Page<Curso> buscarCursos(CursoDto pCurso, Pageable pageable);
+	//public Page<Curso> buscarCursos(CursoDto pCurso, Pageable pageable);
 
 }

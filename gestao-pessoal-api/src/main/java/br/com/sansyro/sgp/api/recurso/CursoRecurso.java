@@ -1,6 +1,7 @@
 package br.com.sansyro.sgp.api.recurso;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +27,7 @@ import br.com.sansyro.sgp.api.dto.CursoDto;
 import br.com.sansyro.sgp.api.modelo.Curso;
 import br.com.sansyro.sgp.api.servico.CursoServico;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/cursos")
 public class CursoRecurso {
@@ -33,9 +36,14 @@ public class CursoRecurso {
 	private CursoServico cursoServico;
 
 	@GetMapping
-	public Page<Curso> buscarCursos(CursoDto pCurso, Pageable pageable){
-		return cursoServico.buscarCursos(pCurso, pageable);
+	public List<Curso> listarCursos(){
+		return cursoServico.listarCursos();
 	}
+
+//	@GetMapping
+//	public Page<Curso> buscarCursos(CursoDto pCurso, Pageable pageable){
+//		return cursoServico.buscarCursos(pCurso, pageable);
+//	}
 	
 	@PostMapping
 	public ResponseEntity<Curso> salvar(@Valid @RequestBody Curso pCurso, HttpServletResponse pResponse) {
