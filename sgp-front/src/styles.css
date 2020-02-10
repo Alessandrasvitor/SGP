@@ -10362,9 +10362,9 @@ a.text-dark:focus, a.text-dark:hover {
     border-collapse: collapse !important
   }
 
-    .table td, .table th {
-      background-color: #fff !important
-    }
+  .table td, .table th {
+    background-color: #fff !important
+  }
 
   .table-bordered td, .table-bordered th {
     border: 1px solid #dee2e6 !important
@@ -10381,6 +10381,11 @@ a.text-dark:focus, a.text-dark:hover {
   .table .thead-dark th {
     color: inherit;
     border-color: #dee2e6
+  }
+
+  .my-center-text {
+    text-align: center;
+    width: 100%;
   }
 }
 /*# sourceMappingURL=bootstrap.min.css.map */
