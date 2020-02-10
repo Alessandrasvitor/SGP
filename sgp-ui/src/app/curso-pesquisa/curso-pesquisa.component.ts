@@ -5,13 +5,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './curso-pesquisa.component.html',
   styleUrls: ['./curso-pesquisa.component.css']
 })
-export class CursoPesquisaComponent implements OnInit {
+export class CursoPesquisaComponent {
 
-  cursos = {};
+  curso = {};
+  cursos = [{nome: 'JAVA', descricao: 'Java para iniciantes', plataforma: 'Prime Cursos', nota: 10.0},
+            {nome: 'C#', descricao: 'C# para iniciantes', plataforma: 'Prime Cursos', nota: null},
+            {nome: 'PHP', descricao: 'PHP para iniciantes', plataforma: 'Prime Cursos', nota: 6.5}];
 
-  constructor() { }
 
-  ngOnInit(): void {
-  }
 
 }
