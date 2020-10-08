@@ -25,15 +25,6 @@ public class Usuario extends Entidade {
 	private static final long serialVersionUID = 1L;
 
 	@NotNull
-	@Size(min=3, max=50)
-	@Column(name = "nome")
-	private String nome;
-
-	@NotNull
-	@Size(min=3, max=20)
-	@Column(name = "login")
-	private String login;
-
 	@Size(min=3, max=30)
 	@Column(name = "email")
 	private String email;
