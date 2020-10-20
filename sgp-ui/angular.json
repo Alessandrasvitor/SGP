@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sgp-ui": {
+    "spg-front-primeng": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/sgp-ui",
+            "outputPath": "dist/spg-front-primeng",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,8 +24,9 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/primeng/resources/themes/nova-light/theme.css",
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeflex/primeflex.css",
               "node_modules/primeicons/primeicons.css",
               "src/styles.css"
             ],
@@ -65,18 +66,19 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sgp-ui:build"
+            "browserTarget": "spg-front-primeng:build",
+            "port": 4201
           },
           "configurations": {
             "production": {
-              "browserTarget": "sgp-ui:build:production"
+              "browserTarget": "spg-front-primeng:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sgp-ui:build"
+            "browserTarget": "spg-front-primeng:build"
           }
         },
         "test": {
@@ -113,19 +115,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "sgp-ui:serve"
+            "devServerTarget": "spg-front-primeng:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "sgp-ui:serve:production"
+              "devServerTarget": "spg-front-primeng:serve:production"
             }
           }
         }
       }
-    }
-  },
-  "defaultProject": "sgp-ui",
-  "cli": {
-    "analytics": "07ee057a-de5f-434e-9daa-688a2d816681"
-  }
+    }},
+  "defaultProject": "spg-front-primeng"
 }

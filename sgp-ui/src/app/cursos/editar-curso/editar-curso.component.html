@@ -1,0 +1,40 @@
+<p-panel >
+  <p-header>
+    <div class="p-text-uppercase"><h2>{{titulo}}</h2></div>      
+  </p-header>
+  <form #entidadeForm="ngForm">
+    <div class="p-fluid p-formgrid p-grid">
+      
+      <div class="p-field p-col-5 p-md-5 p-xl-5 p-lg-5">
+        <label class="p-text-bold" for="nome">Nome:</label>
+        <input id="nome" type="text" required pInputText [(ngModel)]="entidade.nome" name="nome" [disabled]="detalhando"> 
+      </div>
+      
+      <div class="p-field p-col-5 p-md-5 p-xl-5 p-lg-5">
+        <label class="p-text-bold" for="instituicao">Instituição:</label>
+        <p-dropdown id="instituicao" [options]="instituicoes" [(ngModel)]="entidade.instituicao" optionLabel="nome" name="instituicao" [disabled]="detalhando"></p-dropdown>
+      </div>
+      
+      <div class="p-field p-col-2 p-md-2 p-xl-2 p-lg-2">
+        <label class="p-text-bold" for="nota">Nota:</label>
+        <input id="nota" type="number" pInputText [(ngModel)]="entidade.nota" name="nota" [disabled]="detalhando"> 
+      </div>
+      
+      <div class="p-field p-col-12 p-md-12 p-xl-12 p-lg-12">
+        <label class="p-text-bold" for="conteudo">Conteúdo:</label>
+        <textarea id="conteudo" pInputTextarea [(ngModel)]="entidade.conteudo" name="conteudo" [rows]="3" [disabled]="detalhando"></textarea> 
+      </div>
+
+    </div>      
+
+  </form>
+  <p-footer>
+    <div class="p-d-flex">
+      <div *ngIf="detalhando" class="p-d-block p-mx-auto"><button type="button" pButton class="p-button-rounded" icon="pi pi-arrow-left" label="VOLTAR" (click)="Cancelar()"></button></div>
+      <div *ngIf="editando" class="p-d-block p-mx-auto">
+        <button type="button" pButton icon="pi pi-ban" class="p-button-rounded p-button-secondary" label="CANCELAR" (click)="Cancelar()"></button>
+        <button type="button" pButton icon="pi pi-check" class="p-button-rounded p-button-success" label="SALVAR" (click)="salvar()"></button>
+      </div>
+    </div>
+  </p-footer>
+</p-panel>
