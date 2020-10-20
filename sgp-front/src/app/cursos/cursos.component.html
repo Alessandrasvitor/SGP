@@ -1,0 +1,22 @@
+
+<div>
+  <table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Nome</th>
+    <th scope="col">Plataforma</th>
+    <th scope="col">Nota</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let curso of cursos; index as i">
+    <th scope="row">{{ i + 1 }}</th>
+    <td>{{curso.nome}}</td>
+    <td>{{curso.plataforma}}</td>
+    <td>{{curso.nota | number }}</td>
+  </tr>
+  </tbody>
+</table>
+
+</div>
