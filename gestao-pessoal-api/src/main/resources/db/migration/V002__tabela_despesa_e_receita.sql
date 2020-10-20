@@ -7,7 +7,7 @@ CREATE SEQUENCE despesa_id_seq
     CACHE 1;
 
 create table despesa(
-	id bigint DEFAULT nextval('despesa_id_seq'::regclass) not null CONSTRAINT pk_id_despesa PRIMARY KEY,
+	codigo bigint DEFAULT nextval('despesa_id_seq'::regclass) not null CONSTRAINT pk_id_despesa PRIMARY KEY,
 	descricao varchar(255) not null,
 	valor_pagar decimal(10, 2) not null,
 	valor_pago decimal(10, 2)

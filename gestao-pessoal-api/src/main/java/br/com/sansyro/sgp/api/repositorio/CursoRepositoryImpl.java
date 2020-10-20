@@ -47,10 +47,6 @@ public class CursoRepositoryImpl implements CursoRepositoryQuery{
 			predicates.add(	(Predicate) builder.like(builder.upper(root.get(Curso_.nome)) , "%"+pCurso.getNome().toUpperCase()+"%"));
 		}
 		
-		if(StringUtils.isNotEmpty(pCurso.getPlataforma())) {
-			predicates.add(	(Predicate) builder.like(builder.upper(root.get(Curso_.plataforma)) , "%"+pCurso.getPlataforma().toUpperCase()+"%"));
-		}
-		
 		if(StringUtils.isNotEmpty(pCurso.getConteudo())) {
 			predicates.add(	(Predicate) builder.like(builder.upper(root.get(Curso_.conteudo)) , "%"+pCurso.getConteudo().toUpperCase()+"%"));
 		}
@@ -78,6 +74,18 @@ public class CursoRepositoryImpl implements CursoRepositoryQuery{
 		
 		criteria.select(builder.count(root));
 		return manager.createQuery(criteria).getSingleResult();
+	}
+
+	public List<Curso> buscarPorFiltro(Curso pCurso){
+		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		CriteriaQuery<Curso> criteria = builder.createQuery(Curso.class);
+		Root<Curso> root = criteria.from(Curso.class);
+		
+		Predicate[] predicates = criarFiltrosPesquisa(new CursoDto(pCurso), builder, root);
+		
+		criteria.where( builder.and((javax.persistence.criteria.Predicate[]) predicates));
+		criteria.select(root);
+		return manager.createQuery(criteria).getResultList();
 	}
 
 }

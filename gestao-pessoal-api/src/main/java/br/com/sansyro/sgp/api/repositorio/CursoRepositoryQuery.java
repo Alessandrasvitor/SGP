@@ -4,4 +4,5 @@ public interface CursoRepositoryQuery {
 
 	//public Page<Curso> buscarCursos(CursoDto pCurso, Pageable pageable);
 
+	//List<Curso> buscarPorFiltro(Curso pCurso);
 }

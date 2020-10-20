@@ -14,5 +14,6 @@ public enum PerfilEnum {
 	private PerfilEnum(String descricao) {
 		this.descricao = descricao;
 	}
+	
 
 }

@@ -39,7 +39,6 @@ public class CursoServico {
 	public Curso alterar(Long codigo, Curso pCurso) {
 		Curso lCurso = buscarPorId(codigo);
 		BeanUtils.copyProperties(pCurso, lCurso, "codigo");
-		cursoRepositorio.save(lCurso);
 		
 		return cursoRepositorio.save(lCurso);
 	}
@@ -59,8 +58,9 @@ public class CursoServico {
 	}
 
 	public List<Curso> listarCursos() {
-		return cursoRepositorio.findAll();
+		List<Curso> lCursos = cursoRepositorio.findAll();
+		lCursos.forEach(lCurso -> lCurso.getInstituicao().getCodigo());
+		return lCursos;
 	}
-	
-	
+
 }

@@ -27,13 +27,14 @@ import br.com.sansyro.sgp.api.servico.CursoServico;
 @CrossOrigin
 @RestController
 @RequestMapping("/cursos")
-public class CursoRecurso {
+public class CursoRecurso implements CrudRecurso<Curso>{
 	
 	@Autowired
 	private CursoServico cursoServico;
 
 	@GetMapping
-	public List<Curso> listarCursos(){
+	@Override
+	public List<Curso> pesquisarTodos() {
 		return cursoServico.listarCursos();
 	}
 
@@ -43,6 +44,7 @@ public class CursoRecurso {
 //	}
 	
 	@PostMapping
+	@Override
 	public ResponseEntity<Curso> salvar(@Valid @RequestBody Curso pCurso, HttpServletResponse pResponse) {
 		Curso lCurso = cursoServico.salvar(pCurso);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}").buildAndExpand(lCurso.getCodigo()).toUri();
@@ -52,7 +54,8 @@ public class CursoRecurso {
 	}
 	
 	@GetMapping("/{codigo}")
-	public ResponseEntity<?> buscarCurso(@PathVariable Long codigo) {
+	@Override
+	public ResponseEntity<Curso> pesquisarPorId(@PathVariable Long codigo) {
 		Curso lCurso = cursoServico.buscarCurso(codigo);
 		
 		return ResponseEntity.ok(lCurso);
@@ -65,14 +68,14 @@ public class CursoRecurso {
 	}
 	
 	@PutMapping("/{codigo}")
-	public ResponseEntity<?> alterar(@PathVariable Long codigo, @Valid @RequestBody Curso pCurso) {
+	public ResponseEntity<Curso> alterar(@PathVariable Long codigo, @Valid @RequestBody Curso pCurso) {
 		Curso lCurso = cursoServico.alterar(codigo, pCurso);
 		return ResponseEntity.ok(lCurso);
 	}
 	
 	@PutMapping("/{codigo}/nota}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public ResponseEntity<?> lancarNota(@PathVariable Long codigo, @Valid @RequestBody Float nota) {
+	public ResponseEntity<Curso> lancarNota(@PathVariable Long codigo, @Valid @RequestBody Float nota) {
 		Curso lCurso = cursoServico.lancarNota(codigo, nota);
 		return ResponseEntity.ok(lCurso);
 	}
