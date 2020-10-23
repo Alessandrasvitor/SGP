@@ -3,6 +3,8 @@ package br.com.sansyro.sgp.api.exception;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.naming.AuthenticationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -38,6 +40,15 @@ public class sgpExeptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler({ EmptyResultDataAccessException.class })
 	public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException ex,
+			WebRequest request) {
+		String mensagemUsuario = message.getMessage("app.sem.registro", null, LocaleContextHolder.getLocale());
+		String mensagemDesenvolvedor = ex.toString();
+		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
+		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+	}
+	
+	@ExceptionHandler({ AuthenticationException.class })
+	public ResponseEntity<Object> AuthenticationException(AuthenticationException ex,
 			WebRequest request) {
 		String mensagemUsuario = message.getMessage("app.sem.registro", null, LocaleContextHolder.getLocale());
 		String mensagemDesenvolvedor = ex.toString();

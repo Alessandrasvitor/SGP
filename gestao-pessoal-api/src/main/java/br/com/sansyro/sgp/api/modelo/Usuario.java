@@ -30,7 +30,6 @@ public class Usuario extends Entidade {
 	private String email;
 
 	@NotNull
-	@Size(min=4, max=10)
 	@Column(name = "senha")
 	private String senha;
 
