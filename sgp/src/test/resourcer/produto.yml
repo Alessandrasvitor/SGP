@@ -1,0 +1,4 @@
+produto:
+ - id: 1
+   nome: Geladeira
+   valor: 5000.00

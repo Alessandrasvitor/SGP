@@ -11,6 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { UsuariosComponent } from './configuracao/usuarios/usuarios.component';
 import { FinancasComponent } from './financas/financas.component';
 import { ConfiguracaoComponent } from './configuracao/configuracao.component';
+import { CalendarioComponent } from './calendario/calendario.component';
+import { LoginComponent } from './seguranca/login/login.component';
 
 import { TabMenuModule } from 'primeng/tabmenu';
 import { TableModule } from 'primeng/table';
@@ -30,10 +32,9 @@ import { TabViewModule } from 'primeng/tabview';
 import { DialogModule } from 'primeng/dialog';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { PasswordModule } from 'primeng/password';
-import { CalendarioComponent } from './calendario/calendario.component';
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
     CursosComponent,
     NavBarComponent,
@@ -43,7 +44,8 @@ import { CalendarioComponent } from './calendario/calendario.component';
     EditarCursoComponent,
     InstituicoesComponent,
     EditarInstituicaoComponent,
-      CalendarioComponent
+    CalendarioComponent,
+    LoginComponent
    ],
   imports: [
     BrowserModule,

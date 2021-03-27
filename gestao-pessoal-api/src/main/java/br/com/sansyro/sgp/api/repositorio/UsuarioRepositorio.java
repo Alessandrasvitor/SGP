@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryImplementati
 
 import br.com.sansyro.sgp.api.modelo.Usuario;
 
-public interface UsuarioRepositorio extends JpaRepositoryImplementation<Usuario, Long> {
+public interface UsuarioRepositorio extends JpaRepositoryImplementation<Usuario, Long>, UsuarioRepositoryQuery {
 
 }

@@ -1,0 +1,118 @@
+
+  
+<!--div class="p-xl-3 p-lg-4">
+    <label> Arquivo:</label>
+    <input type="file" name="file" accept=".xls,.xlsx"
+        (change)="onUpload($event)" multiple="false">
+</div-->
+<div class="p-grid p-lg-12 p-xl-12 mtop20">
+    <p-table [value]="cursos" #tbCurso  editMode="row" [paginator]="true" [rows]="3" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Mostrando de {first} a {last} de {totalRecords}"
+        [globalFilterFields]="['nome','descricao','instituicaoEnsino.nome','status']">
+        <ng-template pTemplate="caption">
+            <div class="p-grid">
+                <div class="p-input-icon-left p-ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="tbCurso.filterGlobal($event.target.value, 'contains')" placeholder="Pesquisar" />
+                </div>
+                <span>            
+                    <button pButton type="button" label="Novo" icon="pi pi-plus" iconPos="left" 
+                    (click)="criarCurso()" *ngIf="!editando" ></button>
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th width="15%">Nome</th>
+                <th width="30%">Descrição</th>
+                <th width="15%">Instituição</th>
+                <th width="10%">Status</th>
+                <th width="10%">Nota</th>
+                <th width="20%">Ação</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-curso>
+            <tr>
+                <td pEditableColumn *ngIf="curso.editando">
+                    <p-cellEditor >
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="curso.nome" name="nome">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{curso.nome}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn  *ngIf="curso.editando">
+                    <p-cellEditor >
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="curso.descricao">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{curso.descricao}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn  *ngIf="curso.editando">
+                    <p-cellEditor >
+                        <ng-template pTemplate="input">
+                        <p-dropdown [options]="instituicoes" placeholder="Selecione uma Instituição" required [(ngModel)]="curso.instituicaoEnsino" optionLabel="nome" [showClear]="true"
+                            name="canal"></p-dropdown>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{curso.instituicaoEnsino.nome}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td *ngIf="!curso.editando">
+                    {{curso.nome}}
+                </td>
+                <td *ngIf="!curso.editando">
+                    {{curso.descricao}}
+                </td>
+                <td *ngIf="!curso.editando">
+                    {{curso.instituicaoEnsino.nome}}
+                </td>
+                <td>
+                    {{curso.status | status}}
+                </td>
+                <td>
+                    {{curso.nota | number: '1.2-2'}}
+                </td>
+                <td>
+                    <button pButton type="button" icon="pi pi-pencil" *ngIf="!editando" 
+                            (click)="editar(curso)"  pTooltip="Editar" tooltipPosition="bottom"></button>
+                    <button pButton type="button" icon="pi pi-angle-right" (click)="iniciarCurso(curso.id)" class="p-button-secondary"
+                            *ngIf="curso.status === 'PENDENTE' && !editando" pTooltip="Iniciar Curso" tooltipPosition="bottom"></button>
+                    <button pButton type="button" icon="pi pi-check" class="p-button-help" (click)="adicionarNota(curso.id)"
+                            *ngIf="curso.status === 'EM_ANDAMENTO' && !editando"  pTooltip="Concluír Curso" tooltipPosition="bottom"></button>
+                    <button pButton type="button" icon="pi pi-save" *ngIf="curso.editando"
+                            class="p-button-success" (click)="salvar(curso)" pTooltip="Salvar" tooltipPosition="bottom"></button>
+                    <button pButton type="button" icon="pi pi-times" *ngIf="curso.editando" 
+                            class="p-button-danger" (click)="cancelar()"  pTooltip="Cancelar" tooltipPosition="bottom"></button>
+                    <button pButton type="button" class="p-button-danger" icon="pi pi-trash" 
+                            *ngIf="!editando" (click)="deletar(curso)" pTooltip="Excluir" tooltipPosition="bottom"></button>
+                    <button pButton type="button" class="p-button-outlined" icon="pi pi-undo" 
+                            *ngIf="curso.status === 'CONCLUIDO' && !editando" (click)="reiniciar(curso)" pTooltip="Reiniciar" tooltipPosition="bottom"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>  
+
+</div>      
+  
+  <div>
+    <p-confirmDialog header="Confirmação" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+  </div>
+  
+  <div class="p-grid" *ngIf="addNota">
+    <p-dialog header="Insira a nota" [(visible)]="addNota">
+        <div  class="p-col-12">
+            <p-inputNumber [(ngModel)]="curso.nota" name="nota" mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
+        </div>
+        <p-footer>
+            <button type="button" icon="pi pi-ban" label="Cancelar" (click)="cancelar()" class="p-button-danger" pButton></button>
+            <button type="button" icon="pi pi-check-circle" label="Salvar" (click)="concluirCurso()" pButton autofocus></button>
+        </p-footer>
+    </p-dialog>
+  </div>

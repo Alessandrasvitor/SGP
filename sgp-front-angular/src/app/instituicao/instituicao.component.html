@@ -1,0 +1,97 @@
+
+<div class="p-grid p-lg-12 p-xl-12 mtop20">
+  <p-table [value]="instituicoes" #tbCurso  editMode="row" [paginator]="true" [rows]="3" [showCurrentPageReport]="true"
+      currentPageReportTemplate="Mostrando de {first} a {last} de {totalRecords}"
+      [globalFilterFields]="['nome','descricao','instituicaoEnsino.nome','status']">
+      <ng-template pTemplate="caption">
+          <div class="p-grid">
+              <div class="p-input-icon-left p-ml-auto">
+                  <i class="pi pi-search"></i>
+                  <input pInputText type="text" (input)="tbCurso.filterGlobal($event.target.value, 'contains')" placeholder="Pesquisar" />
+              </div>
+              <span>            
+                  <button pButton type="button" label="Novo" icon="pi pi-plus" iconPos="left" 
+                  (click)="criarNovo()" *ngIf="!editando" ></button>
+              </span>
+          </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+          <tr>
+              <th width="30%">Nome</th>
+              <th width="40%">Endereco</th>
+              <th width="10%">Avaliação</th>
+              <th width="20%">Ação</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-instituicao>
+          <tr>
+            <td *ngIf="!instituicao.editando">
+                {{instituicao.nome}}
+            </td>
+            <td *ngIf="!instituicao.editando">
+                {{instituicao.endereco}}
+            </td>
+            <td *ngIf="!instituicao.editando">
+                {{instituicao.avaliacao | number: '1.2-2'}}
+            </td>
+              <td pEditableColumn *ngIf="instituicao.editando">
+                  <p-cellEditor>
+                      <ng-template pTemplate="input">
+                          <input pInputText type="text" [(ngModel)]="instituicao.nome" name="nome">
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                          {{instituicao.nome}}
+                      </ng-template>
+                  </p-cellEditor>
+              </td>
+              <td pEditableColumn *ngIf="instituicao.editando">
+                  <p-cellEditor>
+                      <ng-template pTemplate="input">
+                          <input pInputText type="text" [(ngModel)]="instituicao.endereco" name="endereco">
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                          {{instituicao.endereco}}
+                      </ng-template>
+                  </p-cellEditor>
+              </td>
+              <td pEditableColumn *ngIf="instituicao.editando">
+                  <p-cellEditor>
+                      <ng-template pTemplate="input">
+                          <p-inputNumber [(ngModel)]="instituicao.avaliacao" mode="decimal" [maxFractionDigits]="2" name="avaliacao"></p-inputNumber>
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                          {{instituicao.avaliacao | number: '1.2-2'}}
+                      </ng-template>
+                  </p-cellEditor>
+              </td>
+              <td>
+                  <button pButton type="button" icon="pi pi-pencil" *ngIf="!editando" 
+                          (click)="editar(instituicao)"  pTooltip="Editar" tooltipPosition="bottom"></button>
+                  <button pButton type="button" icon="pi pi-save" *ngIf="instituicao.editando"
+                          class="p-button-success" (click)="salvar(instituicao)" pTooltip="Salvar" tooltipPosition="bottom"></button>
+                  <button pButton type="button" icon="pi pi-times" *ngIf="instituicao.editando" 
+                          class="p-button-danger" (click)="cancelar()"  pTooltip="Cancelar" tooltipPosition="bottom"></button>
+                  <button pButton type="button" class="p-button-danger" icon="pi pi-trash" 
+                          *ngIf="!editando" (click)="deletar(instituicao)" pTooltip="Excluir" tooltipPosition="bottom"></button>
+              </td>
+          </tr>
+      </ng-template>
+  </p-table>  
+
+</div>      
+
+<div>
+  <p-confirmDialog header="Confirmação" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+</div>
+
+<!--div class="p-grid" *ngIf="addNota">
+  <p-dialog header="Insira a nota" [(visible)]="addNota">
+      <div  class="p-col-12">
+          <p-inputNumber [(ngModel)]="curso.nota" name="nota" mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
+      </div>
+      <p-footer>
+          <button type="button" icon="pi pi-ban" label="Cancelar" (click)="cancelar()" class="p-button-danger" pButton></button>
+          <button type="button" icon="pi pi-check-circle" label="Salvar" (click)="concluirCurso()" pButton autofocus></button>
+      </p-footer>
+  </p-dialog>
+</div-->

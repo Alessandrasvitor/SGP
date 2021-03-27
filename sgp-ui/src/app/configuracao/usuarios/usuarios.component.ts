@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { SegurancaService } from 'src/app/seguranca/seguranca.service';
 import { ConfigService } from '../config.service';
 
 @Component({
@@ -19,6 +20,7 @@ export class UsuariosComponent implements OnInit {
   @Output() atualizarUsuario = new EventEmitter();
 
   constructor(private configService: ConfigService,
+              private segurancaService: SegurancaService,
               private messageService: MessageService,
               private confirmationService: ConfirmationService) { }
 
@@ -47,11 +49,7 @@ export class UsuariosComponent implements OnInit {
   // tslint:disable-next-line: typedef
   editar(entidade) {
     this.usuario = JSON.parse(JSON.stringify(entidade));
-    if (this.usuario.status === 'ATIVO') {
-      this.usuario.ativo = true;
-    } else {
-      this.usuario.ativo = false;
-    }
+    this.usuario.senha = '';
     this.editando = true;
     this.modalEdicao = true;
     this.titulo = 'Editar Usuário ' + entidade.nome;
@@ -60,23 +58,14 @@ export class UsuariosComponent implements OnInit {
   // tslint:disable-next-line: typedef
   detalhar(entidade) {
     this.usuario = JSON.parse(JSON.stringify(entidade));
-    if (this.usuario.status === 'ATIVO') {
-      this.usuario.ativo = true;
-    } else {
-      this.usuario.ativo = false;
-    }
+    this.usuario.senha = '';
     this.detalhando = true;
     this.modalEdicao = true;
     this.titulo = 'Detalhar Usuário ' + entidade.nome;
   }
 
-  // tslint:disable-next-line: typedef
-  ligar() {
-    
-  }
-
   criar() {
-    this.usuario = {ativo: true};
+    this.usuario = {status: true};
     this.editando = true;
     this.modalEdicao = true;
     this.titulo = 'Criar Novo Usuário';
@@ -94,11 +83,7 @@ export class UsuariosComponent implements OnInit {
     if (!this.validarDados(usuario)){
       return false;
     }
-    if (usuario.ativo) {
-      usuario.status = 'ATIVO';
-    } else {
-      usuario.status = 'INATIVO';
-    }
+    this.usuario.senha = this.segurancaService.criptografar(this.usuario.senha);
     if (usuario.codigo) {
       this.configService.salvarUsuario(usuario).subscribe(() => {
         this.atualizar();
