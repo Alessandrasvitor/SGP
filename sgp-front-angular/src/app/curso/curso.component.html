@@ -1,5 +1,5 @@
 
-  
+
 <!--div class="p-xl-3 p-lg-4">
     <label> Arquivo:</label>
     <input type="file" name="file" accept=".xls,.xlsx"
@@ -15,8 +15,8 @@
                     <i class="pi pi-search"></i>
                     <input pInputText type="text" (input)="tbCurso.filterGlobal($event.target.value, 'contains')" placeholder="Pesquisar" />
                 </div>
-                <span>            
-                    <button pButton type="button" label="Novo" icon="pi pi-plus" iconPos="left" 
+                <span>
+                    <button pButton type="button" label="Novo" icon="pi pi-plus" iconPos="left"
                     (click)="criarCurso()" *ngIf="!editando" ></button>
                 </span>
             </div>
@@ -24,11 +24,11 @@
         <ng-template pTemplate="header">
             <tr>
                 <th width="15%">Nome</th>
-                <th width="30%">Descrição</th>
-                <th width="15%">Instituição</th>
+                <th width="40%">Descrição</th>
+                <th width="13%">Instituição</th>
                 <th width="10%">Status</th>
-                <th width="10%">Nota</th>
-                <th width="20%">Ação</th>
+                <th width="5%">Nota</th>
+                <th width="17%">Ação</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-curso>
@@ -80,7 +80,7 @@
                     {{curso.nota | number: '1.2-2'}}
                 </td>
                 <td>
-                    <button pButton type="button" icon="pi pi-pencil" *ngIf="!editando" 
+                    <button pButton type="button" icon="pi pi-pencil" *ngIf="!editando"
                             (click)="editar(curso)"  pTooltip="Editar" tooltipPosition="bottom"></button>
                     <button pButton type="button" icon="pi pi-angle-right" (click)="iniciarCurso(curso.id)" class="p-button-secondary"
                             *ngIf="curso.status === 'PENDENTE' && !editando" pTooltip="Iniciar Curso" tooltipPosition="bottom"></button>
@@ -88,23 +88,23 @@
                             *ngIf="curso.status === 'EM_ANDAMENTO' && !editando"  pTooltip="Concluír Curso" tooltipPosition="bottom"></button>
                     <button pButton type="button" icon="pi pi-save" *ngIf="curso.editando"
                             class="p-button-success" (click)="salvar(curso)" pTooltip="Salvar" tooltipPosition="bottom"></button>
-                    <button pButton type="button" icon="pi pi-times" *ngIf="curso.editando" 
+                    <button pButton type="button" icon="pi pi-times" *ngIf="curso.editando"
                             class="p-button-danger" (click)="cancelar()"  pTooltip="Cancelar" tooltipPosition="bottom"></button>
-                    <button pButton type="button" class="p-button-danger" icon="pi pi-trash" 
+                    <button pButton type="button" class="p-button-danger" icon="pi pi-trash"
                             *ngIf="!editando" (click)="deletar(curso)" pTooltip="Excluir" tooltipPosition="bottom"></button>
-                    <button pButton type="button" class="p-button-outlined" icon="pi pi-undo" 
+                    <button pButton type="button" class="p-button-outlined" icon="pi pi-undo"
                             *ngIf="curso.status === 'CONCLUIDO' && !editando" (click)="reiniciar(curso)" pTooltip="Reiniciar" tooltipPosition="bottom"></button>
                 </td>
             </tr>
         </ng-template>
-    </p-table>  
+    </p-table>
 
-</div>      
-  
+</div>
+
   <div>
     <p-confirmDialog header="Confirmação" icon="pi pi-exclamation-triangle"></p-confirmDialog>
   </div>
-  
+
   <div class="p-grid" *ngIf="addNota">
     <p-dialog header="Insira a nota" [(visible)]="addNota">
         <div  class="p-col-12">
