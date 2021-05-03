@@ -1,0 +1,36 @@
+  <form #usuarioForm="ngForm">
+
+      <div class="p-field p-fluid">
+        <label for="nome">Nome:</label>
+        <input id="nome" type="username" [(ngModel)]="usuario.nome" name="nome" #nome pInputText 
+            required> 
+        <small class="p-error" *ngIf="nome.invalid">O Nome é obrigatório</small>
+      </div>
+    
+      <div class="p-field p-fluid">
+        <label for="email">Email:</label>
+        <input id="email" type="text" Email pInputText [(ngModel)]="usuario.email" #email name="email"
+            required> 
+        <small class="p-error" *ngIf="email.invalid">O Email é obrigatório</small>
+      </div>
+    
+      <div class="p-field p-fluid">
+        <label for="senha">Senha:</label>
+        <input id="senha" type="password" pInputText [(ngModel)]="usuario.senha" #senha name="senha" 
+            required> 
+        <small class="p-error" *ngIf="senha.invalid">A Senha é obrigatória</small>
+      </div>
+    
+      <div class="p-field p-fluid">
+        <label for="contraSenha">Contra Senha:</label>
+        <input id="contraSenha" type="password" pInputText [(ngModel)]="usuario.contraSenha" #contraSenha 
+            name="contraSenha" required> 
+        <small class="p-error" *ngIf="contraSenha.invalid">A Contra Senha é obrigatória</small>
+      </div>
+      <div class=" p-grid">
+
+        <button pButton type="button" class="p-button-danger" label="CANCELAR" (click)="cancelar()" ></button>
+        <button pButton type="button" label="SALVAR" (click)="salvar()" ></button>
+      </div>
+    
+  </form>

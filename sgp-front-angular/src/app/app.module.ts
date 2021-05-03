@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CursoModule } from './curso/curso.module';
 import { InstituicaoModule } from './instituicao/instituicao.module';
+import { UsuarioModule } from './usuario/usuario.module';
 
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
@@ -25,6 +26,7 @@ import { MenubarModule } from 'primeng/menubar';
     CursoModule,
     ToastModule,
     InstituicaoModule,
+    UsuarioModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

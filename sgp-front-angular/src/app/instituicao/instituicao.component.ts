@@ -4,7 +4,6 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { UtilService } from '../util.service';
 
 @Component({
-  selector: 'app-instituicao',
   templateUrl: './instituicao.component.html',
   styleUrls: ['./instituicao.component.css']
 })
